@@ -1,47 +1,92 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Header from "./layouts/header";
-// import Login from "./layouts/login";
-// import Dashboard from "./modules/dashboard";
-// import TimekeepingRouting from "./modules/timekeeping/timekeeping-routing";
-// import PayrollRouting from "./modules/payroll/payroll-routing";
-// import EmployeeRouting from "./modules/employee/employee-routing";
-// import ReportsRouting from "./modules/reports/reports-routing";
-// import OrganizationRouting from "./modules/organization/organization-routing";
-// import PiecerateRouting from "./modules/piecerate/piecerate-routing";
-// import SettingsRouting from "./modules/settings/settings-routing";
 
-import AdminRouting from "./modules/Administrator/Admin-routing";
+import Login from "./modules/Login/login";
+
+import Dashboard from "./modules/Dashboard/dashboard";
+import ForgotPass from "./modules/Forgot Password/sub-modules/fgpass";
+import OTP from "./modules/Forgot Password/sub-modules/otp";
+import ConfirmPass from "./modules/Forgot Password/sub-modules/cpass";
+import Rbac from "./modules/Administrator/sub-modules/UserMasterData/UserRole";
+import CreateRole from "./modules/Administrator/sub-modules/UserMasterData/CreateRole";
+import EditRole from "./modules/Administrator/sub-modules/UserMasterData/EditRole";
+import MasterList from "./modules/Administrator/sub-modules/UserMasterData/MasterList";
+
 import Sidebar from "./modules/Sidebar/sidebar";
 
+import { DataProvider } from './modules/Forgot Password/sub-modules/data/dataPost';
+import ProtectedRoutes from "./hooks/protectedRoute";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* <Route
-          path="/"
-          element={<Login />}
-        /> */}
-      </Routes>
-       
-      <div className="app">
-        {/* <Header /> */}
-        <div className="container">
-          <Sidebar />
-
-          <Routes>
+    <div className="app">
+      <DataProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={<Login />}
+          />
+          <Route
+            path="/forgotpass"
+            element={<ForgotPass />}
+          />
+          <Route
+            path="/OTP"
+            element={<OTP />}
+          />
             <Route
-              path="/admin/masterList"
-              element={<AdminRouting />}
-            />
+            path="/ConfirmPassword/:email?"
+            element={<ConfirmPass />}
+          />
+        </Routes>
+      </DataProvider>
 
-          
-            
-          </Routes>
-          
-         
+    <div className="main-of-containers">
+        <div className="left-of-main-containers">
+            <Sidebar/>
         </div>
+
+        <div className="mid-of-main-containers">
+        </div>
+
+        <div className="right-of-main-container">
+      <DataProvider>
+        <ProtectedRoutes>
+        <Routes>
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
+
+          {/* User Master Data */}
+
+          <Route
+            path="/userRole"
+            element={<Rbac />}
+          />
+
+          <Route
+            path="/createRole"
+            element={<CreateRole />}
+          />
+
+          <Route
+            path="/editRole/:id"
+            element={<EditRole />}
+          />
+
+          <Route
+            path="/masterList"
+            element={<MasterList/>}
+          />
+        
+          
+        </Routes>
+        </ProtectedRoutes>
+      </DataProvider>
+      </div>
+      </div>
       </div>
     </Router>
   );
