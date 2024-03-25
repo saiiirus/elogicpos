@@ -14,103 +14,49 @@ import MasterList from "./modules/Administrator/sub-modules/UserMasterData/Maste
 
 import Sidebar from "./modules/Sidebar/sidebar";
 
-// import ProductManagement from "./modules/Product/ProductManagement";
-// import ExtraOption from "./modules/Extra Option/ExtraOption";
-// import ProductCategory from "./modules/ProductCategory/ProductCategoryManagement.jsx";
+import Layout from "./layout/layout.jsx";
 
 import { DataProvider } from './modules/Forgot Password/sub-modules/data/dataPost';
 import ProtectedRoutes from "./hooks/protectedRoute";
+import Menu from "./modules/Menu/Menu.jsx";
 
 function App() {
   return (
     <Router>
-    <div className="app">
-      <DataProvider>
-        <Routes>
-          <Route
-            path="/"
-            element={<Login />}
-          />
-          <Route
-            path="/forgotpass"
-            element={<ForgotPass />}
-          />
-          <Route
-            path="/OTP"
-            element={<OTP />}
-          />
-            <Route
-            path="/ConfirmPassword/:email?"
-            element={<ConfirmPass />}
-          />
-        </Routes>
-      </DataProvider>
+      <div className="App">
+        <DataProvider>
+          <Routes>
+            {/* <Route path="/" element={<Login />} /> */}
+            <Route path="/" element={<Login />} />
+            <Route path="/forgotpass" element={<ForgotPass />} />
+            <Route path="/OTP" element={<OTP />} />
+            <Route path="/ConfirmPassword/:email?" element={<ConfirmPass />} />
+          </Routes>
+        </DataProvider>
 
-    <div className="main-of-containers">
-        <div className="left-of-main-containers">
-            <Sidebar/>
-        </div>
+        <DataProvider>
+          <ProtectedRoutes>
+            <Routes>
+              <Route path="/menu" element={<Menu />} />
+              <Route element={<Layout />}>
+                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                <Route path="/dashboard" element={<Dashboard />} />
 
-        <div className="mid-of-main-containers">
-        </div>
+                {/* User Master Data */}
 
-        <div className="right-of-main-container">
-      <DataProvider>
-        <ProtectedRoutes>
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={<Dashboard />}
-          />
+                <Route path="/userRole" element={<Rbac />} />
 
-          {/* User Master Data */}
+                <Route path="/createRole" element={<CreateRole />} />
 
-          <Route
-            path="/userRole"
-            element={<Rbac />}
-          />
+                <Route path="/editRole/:id" element={<EditRole />} />
 
-          <Route
-            path="/createRole"
-            element={<CreateRole />}
-          />
+                <Route path="/masterList" element={<MasterList />} />
 
-          <Route
-            path="/editRole/:id"
-            element={<EditRole />}
-          />
-
-          <Route
-            path="/masterList"
-            element={<MasterList/>}
-          />
-
-          {/* <Route
-            path="/productManagement"
-            element={<ProductManagement/>}
-          /> 
-          
-          <Route
-          path="/extraOption"
-          element={<ExtraOption/>}
-        />
-
-        <Route
-          path="/productCategory"
-          element={<ProductCategory/>}
-        />
-
-        <Route
-          path="/updateProduct/:id"
-          element={ProductCategory}
-        /> */}
-        
-          
-        </Routes>
-        </ProtectedRoutes>
-      </DataProvider>
-      </div>
-      </div>
+               
+              </Route>
+            </Routes>
+          </ProtectedRoutes>
+        </DataProvider>
       </div>
     </Router>
   );
