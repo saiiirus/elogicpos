@@ -14,6 +14,10 @@ import MasterList from "./modules/Administrator/sub-modules/UserMasterData/Maste
 
 import Sidebar from "./modules/Sidebar/sidebar";
 
+// import ProductManagement from "./modules/Product/ProductManagement";
+// import ExtraOption from "./modules/Extra Option/ExtraOption";
+// import ProductCategory from "./modules/ProductCategory/ProductCategoryManagement.jsx";
+
 import { DataProvider } from './modules/Forgot Password/sub-modules/data/dataPost';
 import ProtectedRoutes from "./hooks/protectedRoute";
 
@@ -80,6 +84,26 @@ function App() {
             path="/masterList"
             element={<MasterList/>}
           />
+
+          {/* <Route
+            path="/productManagement"
+            element={<ProductManagement/>}
+          /> 
+          
+          <Route
+          path="/extraOption"
+          element={<ExtraOption/>}
+        />
+
+        <Route
+          path="/productCategory"
+          element={<ProductCategory/>}
+        />
+
+        <Route
+          path="/updateProduct/:id"
+          element={ProductCategory}
+        /> */}
         
           
         </Routes>
