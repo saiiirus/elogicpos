@@ -36,8 +36,6 @@ router.route('/create').post(async (req, res) => {
       } else {
         const newData = await Category.create({
           name: req.body.name,
-          tax_information: req.body.tax_information,
-          description: req.body.description 
         });
         res.status(200).json(newData);
       }

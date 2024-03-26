@@ -11,6 +11,9 @@ import Rbac from "./modules/Administrator/sub-modules/UserMasterData/UserRole";
 import CreateRole from "./modules/Administrator/sub-modules/UserMasterData/CreateRole";
 import EditRole from "./modules/Administrator/sub-modules/UserMasterData/EditRole";
 import MasterList from "./modules/Administrator/sub-modules/UserMasterData/MasterList";
+import ProductCategoryMain from "./modules/ProductCategory/ProductCategoryManagement.jsx";
+import ProductCategory from "./modules/ProductCategory/ProductCategory.jsx";
+import ProductManagement from "./modules/Product/ProductManagement";
 
 import Sidebar from "./modules/Sidebar/sidebar";
 
@@ -51,7 +54,17 @@ function App() {
                 <Route path="/editRole/:id" element={<EditRole />} />
 
                 <Route path="/masterList" element={<MasterList />} />
+                
+                <Route
+                  path="/productManagement"
+                  element={<ProductManagement />}
+                />
 
+                <Route
+                  path="/productCategoryMain"
+                  element={<ProductCategoryMain />}
+                />
+                <Route path="/productCategory" element={<ProductCategory />} />
                
               </Route>
             </Routes>
